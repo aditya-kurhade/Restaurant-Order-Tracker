@@ -49,22 +49,30 @@ function OrderCard({ order, onStatusUpdated }) {
 
   return (
     <article className="order-card">
-      <p>{order.customer_name}</p>
-      <p>{order.item}</p>
-      <p>{order.status}</p>
-      <button type="button" onClick={handleNext} disabled={order.status === 'Completed' || loading || deleting}>
-        {loading ? 'Updating...' : 'Next'}
-      </button>
-      {order.status === 'Completed' && (
-        <button
-          type="button"
-          className="delete-btn"
-          onClick={handleDelete}
-          disabled={deleting || loading}
-        >
-          {deleting ? 'Deleting...' : 'Delete'}
+      <div className="card-top">
+        <div>
+          <p className="card-customer">{order.customer_name}</p>
+          <p className="card-item">{order.item}</p>
+        </div>
+        <span className={`card-status status-${order.status.toLowerCase()}`}>
+          {order.status}
+        </span>
+      </div>
+      <div className="card-actions">
+        <button type="button" className="btn-action" onClick={handleNext} disabled={order.status === 'Completed' || loading || deleting}>
+          {loading ? 'Updating...' : 'Next'}
         </button>
-      )}
+        {order.status === 'Completed' && (
+          <button
+            type="button"
+            className="btn-action btn-delete"
+            onClick={handleDelete}
+            disabled={deleting || loading}
+          >
+            {deleting ? 'Deleting...' : 'Delete'}
+          </button>
+        )}
+      </div>
     </article>
   )
 }

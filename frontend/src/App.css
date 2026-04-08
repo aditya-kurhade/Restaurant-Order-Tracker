@@ -33,30 +33,93 @@
 
 .order-card {
 	margin-top: 12px;
-	padding: 14px;
-	border: 1px solid #e3e3e3;
-	border-radius: 10px;
-	background: #fafafa;
-}
-
-.order-card button {
-	margin-top: 8px;
-	padding: 8px 12px;
-	border: 1px solid #cfcfcf;
+	padding: 12px;
+	border: 1px solid #e0e0e0;
 	border-radius: 8px;
 	background: #fff;
-	cursor: pointer;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
 }
 
-.order-card button:disabled {
-	opacity: 0.6;
+.card-top {
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	gap: 8px;
+}
+
+.card-customer {
+	margin: 0;
+	font-size: 14px;
+	font-weight: 600;
+	color: #111;
+}
+
+.card-item {
+	margin: 4px 0 0;
+	font-size: 13px;
+	color: #666;
+}
+
+.card-status {
+	font-size: 11px;
+	padding: 3px 8px;
+	border-radius: 12px;
+	font-weight: 500;
+	white-space: nowrap;
+}
+
+.card-status.status-preparing {
+	background: #fef3c7;
+	color: #865c0e;
+}
+
+.card-status.status-ready {
+	background: #cffafe;
+	color: #0e3a47;
+}
+
+.card-status.status-completed {
+	background: #d1fae5;
+	color: #065f46;
+}
+
+.card-actions {
+	display: flex;
+	gap: 6px;
+}
+
+.btn-action {
+	flex: 1;
+	padding: 8px 10px;
+	border: 1px solid #d0d0d0;
+	border-radius: 6px;
+	background: #111;
+	color: #fff;
+	cursor: pointer;
+	font-size: 12px;
+	font-weight: 600;
+	transition: 0.2s;
+}
+
+.btn-action:hover:not(:disabled) {
+	background: #333;
+}
+
+.btn-action:disabled {
+	opacity: 0.5;
 	cursor: not-allowed;
 }
 
-.order-card .delete-btn {
-	margin-left: 8px;
-	border-color: #d92d20;
+.btn-action.btn-delete {
+	background: #fff;
 	color: #d92d20;
+	border-color: #d92d20;
+}
+
+.btn-action.btn-delete:hover:not(:disabled) {
+	background: #fef2f2;
 }
 
 .orders-grid {
