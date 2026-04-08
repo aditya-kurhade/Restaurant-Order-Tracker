@@ -53,6 +53,12 @@
 	cursor: not-allowed;
 }
 
+.order-card .delete-btn {
+	margin-left: 8px;
+	border-color: #d92d20;
+	color: #d92d20;
+}
+
 .orders-grid {
 	display: grid;
 	grid-template-columns: repeat(3, minmax(0, 1fr));
