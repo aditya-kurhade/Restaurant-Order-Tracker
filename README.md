@@ -23,28 +23,28 @@ A full-stack app to track restaurant orders through three stages:
 
 ```txt
 Restaurant Order Tracker/
-  backend/
-    controllers/
-      orderController.js
-    routes/
-      orderRoutes.js
-    db.js
-    index.js
-    schema.sql
-    package.json
-  frontend/
-    src/
-      components/
-        OrderCard.jsx
-        OrderForm.jsx
-        OrderList.jsx
-      App.jsx
-      App.css
-      main.jsx
-      index.css
-    package.json
-    vite.config.js
-  README.md
+|-- backend/
+|   |-- controllers/
+|   |   |-- orderController.js
+|   |-- routes/
+|   |   |-- orderRoutes.js
+|   |-- db.js
+|   |-- index.js
+|   |-- schema.sql
+|   |-- package.json
+|-- frontend/
+|   |-- src/
+|   |   |-- components/
+|   |   |   |-- OrderCard.jsx
+|   |   |   |-- OrderForm.jsx
+|   |   |   |-- OrderList.jsx
+|   |   |-- App.jsx
+|   |   |-- App.css
+|   |   |-- main.jsx
+|   |   |-- index.css
+|   |-- package.json
+|   |-- vite.config.js
+|-- README.md
 ```
 
 ## Features
