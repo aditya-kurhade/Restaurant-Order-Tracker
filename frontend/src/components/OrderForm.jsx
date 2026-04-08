@@ -2,7 +2,7 @@ import { useState } from 'react'
 
 const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:3000'
 
-function OrderForm({ onOrderCreated }) {
+function OrderForm({ onOrderCreateStart, onOrderCreated }) {
   const [customerName, setCustomerName] = useState('')
   const [item, setItem] = useState('')
   const [loading, setLoading] = useState(false)
@@ -21,6 +21,10 @@ function OrderForm({ onOrderCreated }) {
     }
 
     try {
+      if (onOrderCreateStart) {
+        onOrderCreateStart()
+      }
+
       setLoading(true)
       const response = await fetch(`${API_URL}/orders`, {
         method: 'POST',
