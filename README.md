@@ -224,42 +224,86 @@ Frontend runs on `http://localhost:5173`.
 
 ## Troubleshooting
 
-### 500 on `/orders`
-Cause:
-- `orders` table missing in Neon
+### 500 on `GET /orders` or `POST /orders`
+**Cause:** `orders` table missing in Neon
 
-Fix:
-- Run schema SQL in Neon SQL Editor
+**Fix:**
+- Open Neon SQL Editor
+- Run the schema SQL from above
+- Refresh frontend
 
 ### 400 on `POST /orders`
-Cause:
-- Empty `customer_name` or `item`
+**Cause:** Empty `customer_name` or `item` field
 
-Fix:
-- Enter both fields in form
+**Fix:**
+- Fill both fields before submitting
+- Form shows error message
 
-### CORS or wrong backend URL
-Cause:
-- Frontend points to wrong API URL
+### CORS error or request failing
+**Cause:** Frontend using wrong backend URL
 
-Fix:
-- Check `frontend/.env`
-- Ensure `VITE_API_URL` is correct
+**Fix (Local):**
+- Check `frontend/.env` has `VITE_API_URL=http://localhost:3000`
+- Ensure backend is running on port 3000
 
-### DB connection issues
-Cause:
-- Invalid `DATABASE_URL`
+**Fix (Deployed):**
+- Check Vercel env var `VITE_API_URL` points to your Render backend URL
+- Redeploy frontend if env changed
 
-Fix:
-- Verify `backend/.env`
-- Confirm Neon credentials and DB name
+### Backend won't start locally
+**Cause:** Missing dependencies or env variables
 
-## Production / Deployment Notes
+**Fix:**
+- Run `npm install` in backend folder
+- Create `backend/.env` with valid `DATABASE_URL`
+- Check PostgreSQL connection
 
-- Deploy backend first and get API URL
-- Set frontend `VITE_API_URL` to deployed backend URL
-- Keep Neon `DATABASE_URL` in backend environment variables
-- Run `schema.sql` once on production database
+### Delete button not working
+**Cause:** Order is not in "Completed" status
+
+**Fix:**
+- Delete button only shows for completed orders
+- Click "Next" twice to move order to Completed first
+
+## Deployment
+
+### Backend (Render)
+
+1. Push code to GitHub
+2. Create Web Service on [Render](https://render.com)
+3. Connect your GitHub repo
+4. Set Root Directory: `backend`
+5. Build Command: `npm install`
+6. Start Command: `npm start`
+7. Add Environment:
+   - `DATABASE_URL`: Your Neon connection string
+8. Deploy
+9. Get your backend URL (e.g., `https://restaurant-order-tracker-3.onrender.com`)
+
+### Frontend (Vercel)
+
+1. Create Site on [Vercel](https://vercel.com)
+2. Import your GitHub repo
+3. Set Root Directory: `frontend`
+4. Build Command: `npm run build`
+5. Output Directory: `dist`
+6. Add Environment Variable:
+   - `VITE_API_URL`: Your Render backend URL
+7. Deploy
+
+### Database (Neon)
+
+- Run schema SQL in Neon SQL Editor (one-time setup)
+- Neon connection string automatically used by backend
+
+## Production Notes
+
+- Always deploy backend first, get URL, then deploy frontend with that URL
+- Never commit `.env` files; use platform env vars (Render, Vercel)
+- Rotate database credentials regularly
+- Monitor backend logs for errors
+- Test all API endpoints after deployment
+- Keep Neon connection string secure
 
 ## Scripts
 
@@ -274,14 +318,20 @@ Fix:
 
 ## Current Limitations
 
-- No authentication
-- No delete/edit order endpoints
-- No pagination
-- Basic error handling only
+- No user authentication or multi-user support
+- No order search or filtering
+- No pagination (all orders on one page)
+- Status can only move forward (Preparing → Ready → Completed)
+- Delete only available for completed orders
+- Basic form validation
 
 ## Next Suggestions
 
-- Add `.env.example` files in both frontend and backend
-- Add a small `npm run dev` script for backend using nodemon
-- Add endpoint tests (supertest/jest)
-- Add form success toast/message
+- Add user authentication (JWT)
+- Add order search/filter by customer name
+- Add pagination for large order lists
+- Add email notifications on order status change
+- Add order notes/comments
+- Add order timestamps (preparation time, completion time)
+- Add unit and integration tests
+- Add success toast notifications
