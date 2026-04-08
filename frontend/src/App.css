@@ -1,0 +1,75 @@
+.app-shell {
+	max-width: 960px;
+	margin: 0 auto;
+	padding: 32px 20px;
+}
+
+.card {
+	margin-top: 24px;
+	padding: 20px;
+	border: 1px solid #d9d9d9;
+	border-radius: 12px;
+	background: #fff;
+}
+
+.stack {
+	display: grid;
+	gap: 12px;
+}
+
+.stack input,
+.stack button {
+	padding: 12px 14px;
+	border: 1px solid #cfcfcf;
+	border-radius: 8px;
+	font: inherit;
+}
+
+.stack button {
+	cursor: pointer;
+	background: #111;
+	color: #fff;
+}
+
+.order-card {
+	margin-top: 12px;
+	padding: 14px;
+	border: 1px solid #e3e3e3;
+	border-radius: 10px;
+	background: #fafafa;
+}
+
+.order-card button {
+	margin-top: 8px;
+	padding: 8px 12px;
+	border: 1px solid #cfcfcf;
+	border-radius: 8px;
+	background: #fff;
+	cursor: pointer;
+}
+
+.order-card button:disabled {
+	opacity: 0.6;
+	cursor: not-allowed;
+}
+
+.orders-grid {
+	display: grid;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	gap: 16px;
+	margin-top: 16px;
+}
+
+.orders-grid h3 {
+	margin: 0 0 12px;
+}
+
+.error-text {
+	color: #b42318;
+	margin-top: 10px;
+}
+
+.empty-text {
+	margin-top: 10px;
+	color: #555;
+}
